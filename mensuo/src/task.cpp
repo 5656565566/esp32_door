@@ -139,6 +139,7 @@ void keypadEvent(KeypadEvent key)
         }
         if (key == '#')
         {
+            close_door();
             break;
         }
         stringManager.addChar(key);

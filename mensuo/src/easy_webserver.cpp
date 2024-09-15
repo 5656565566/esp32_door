@@ -138,6 +138,7 @@ void WebServerManager::handleClearCards()
     {
         return;
     }
+    clear_card();
     Serial.println("Clearing all cards...");
     server.send(200, "text/html", html_tip("所有已经认证的卡片已经清空"));
 }
