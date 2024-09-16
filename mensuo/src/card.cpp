@@ -67,8 +67,15 @@ bool isStoredCard()
     }
 }
 
+void RESTMfrc(){
+    mfrc522.PCD_Reset();
+    mfrc522.PCD_AntennaOff();
+    mfrc522.PCD_AntennaOn();
+}
+
 void loop_mfrc()
 {
+    RESTMfrc();
     save --;
     if (!mfrc522.PICC_IsNewCardPresent())
     {
@@ -102,13 +109,12 @@ void loop_mfrc()
     }
     clearUID();
 
-    // Halt PICC
     mfrc522.PICC_HaltA();
 }
 
 void save_card()
 {
-    save = 77 * 100;
+    save = 77 * 60;
     digitalWrite(TIP_LED, HIGH);
 }
 

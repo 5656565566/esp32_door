@@ -7,7 +7,6 @@
 #include "door.h"
 #include "data.h"
 
-
 Display display;
 
 class PasswordManager
@@ -167,4 +166,8 @@ void loop_display()
     display.clear();
     display.setText(stringManager.getString());
     display.show();
+}
+
+void loop_web()
+{
 }

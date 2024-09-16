@@ -6,21 +6,18 @@ Servo sg90;
 
 int pos = 0;
 int angle = 0;
-int increment = 3;
 int open_time = 0;
 
 bool is_open = false;
 
-void rotateServo()
+void rotateServo(int target_angle)
 {
-    angle += increment;
+    pos = target_angle;
 
-    if (angle >= 180 || angle <= 0)
+    if (target_angle != pos)
     {
-        increment = -increment;
+        sg90.write(pos);
     }
-
-    sg90.write(angle);
 }
 
 void open_door()
@@ -38,7 +35,7 @@ void close_door()
 void init_door()
 {
     sg90.attach(SG90);
-    sg90.write(pos);
+    sg90.write(0);
     pinMode(LED, OUTPUT);
 }
 
@@ -52,11 +49,12 @@ void loop_door()
 
     if (is_open)
     {
-        rotateServo();
+        rotateServo(180);
         digitalWrite(LED, HIGH);
     }
     else
     {
+        rotateServo(0);
         digitalWrite(LED, LOW);
     }
 
